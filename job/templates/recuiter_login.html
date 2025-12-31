@@ -1,0 +1,59 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<marquee style="font-family: 'Monotype Corsiva'; font-size:25px; color:darkcyan; background-color:black; font-weight:bold; margin-top:1%">
+    Recuiter Login
+</marquee>
+<hr>
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label><b>Email ID:</b></label>
+    <input type="text" class="form-control" name="uname" placeholder="Enter Email ID"
+    title="Enter a valid email address (e.g. someone@example.com)">
+    <label><b>Password:</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password"
+     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}"
+ title="Must contain at least one number, one uppercase, one lowercase, one special character and at least 8 characters long">
+<center>
+    <input type="submit" class="btn btn-primary" style="margin-top:2%; color:darkcyan; background-color:black ; height:50px; font-size:25px">
+    <a href="{% url 'recuiter_signup' %}" class="btn btn-primary" style="margin-top:2%; color:darkcyan; background-color:black ; height:50px; font-size:25px">CREATE AN ACCOUNT</a>
+</center>
+</form>
+<script>
+function validatePassword() {
+    const password = document.getElementById("pwd").value;
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/;
+
+    if (!regex.test(password)) {
+        alert("Password must be at least 8 characters long and contain:\n- At least one number\n- One uppercase letter\n- One lowercase letter\n- One special character (@#$%^&+=)");
+        return false;
+    }
+
+    return true;
+}
+</script>
+{% include 'footer.html' %}
+
+{% if error == "no" %}
+<script>
+    alert("Login Successfully")
+    window.location = "{% url 'recuiter_home' %}"
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Invalid Login Details, Try Agail...")
+</script>
+{% endif %}
+
+{% if error == "not" %}
+<script>
+    alert("Login Status is Pending")
+</script>
+{% endif %}
+
+{% endblock %}

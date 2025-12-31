@@ -1,0 +1,36 @@
+{% include 'recuiter_navigation.html' %}
+
+<style>
+tr{text-align:center}
+</style>
+
+<marquee style="font-family: 'Monotype Corsiva'; font-size:25px; color:darkcyan; background-color:black; font-weight:bold; margin-top:1%">
+        Accepted Item List
+</marquee>
+<hr>
+
+<div class="container-fluid">
+<table class="table table-hover " id="example">
+    <thead>
+    <tr style="background-color: lightgreen; color : black">
+        <th>S. No.</th>
+        <th>Item Name</th>
+        <th>Person Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody style="background-color:yellow; color: black">
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.lname}}</td>
+        <td>{{i.fname}}</td>
+        <td><a href="" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% include 'footer.html' %}
+

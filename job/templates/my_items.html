@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% include 'user_navigation.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MY Items</title>
+</head>
+<body>
+<marquee behavior="alternate" style="font-family: 'Monotype Corsiva'; font-size:25px; color:darkcyan; background-color:black; font-weight:bold; margin-top:1%">
+    Accepted Item
+</marquee>
+<div class="container-fluid">
+    <table class="table table-striped">
+        <tr>
+            <th>S.NO.</th>
+            <th>Item Name</th>
+            <th>Person Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Address</th>
+        </tr>
+        {% for i in data %}
+            {% if i.email == request.user.username %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.lname}}</td>
+                    <td>{{i.fname}}</td>
+                    <td>{{i.mobile}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.experience}}<br>{{i.qualification}}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+{% if not data %}
+    <center>
+        <h1>No Data Found</h1>
+    </center>
+{% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% include 'recuiter_navigation.html' %}
+
+<marquee style="font-family: 'Monotype Corsiva'; font-size:25px; color:darkcyan; background-color:black; font-weight:bold; margin-top:1%">
+    Item Accepted
+</marquee>
+<hr>
+
+<div class="container-fluid">
+<table class="table table-hover " id="example">
+    <thead>
+    <tr style="background-color: lightgreen; color : black">
+        <th>Full Name</th>
+        <th>Contact Number</th>
+        <th>Email ID</th>
+        <th>Experience</th>
+        <th>Qulification</th>
+        <th>Profile</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody style="background-color:yellow; color: black">
+    {% for i in data %}
+    <tr>
+        <td>{{i.fname}} {{i.lname}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.experience}} Year</td>
+        <td>{{i.qualification}}</td>
+        <td><img src="{{i.image.url}}" height="100" width="100" style="border-radius:30px;"></td>
+
+        <td><a href="{% url 'applied_condidate_list' %}" class="btn btn-primary btn-sm">View Applied Condidate</a>
+            <br><br><a href="{% url 'delete_condidate' i.id %}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% include 'footer.html' %}

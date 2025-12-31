@@ -1,0 +1,75 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recuiter_navigation.html' %}
+
+<marquee style="font-family: 'Monotype Corsiva'; font-size:25px; color:lightgreen; background-color:black; font-weight:bold; margin-top:1%">
+    Add Item
+</marquee>
+<hr>
+<form class="container mt-5" onsubmit="return checkpass();" name="signup" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-row">
+        <div class="form-group col-md-12" >
+            <label>Item Name:</label>
+            <input type="text" class="form-control" name="jobtitle" placeholder="Enter Name of Item" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6" >
+            <label>Home Address:</label>
+            <input type="text" class="form-control" name="startdate" placeholder="Enter Your City" required>
+        </div>
+
+        <div class="form-group col-md-6" >
+            <label>State:</label>
+            <input type="text" class="form-control" name="enddate" placeholder="Enter your State" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6" >
+            <label>Condition:</label>
+            <input type="text" class="form-control" name="salary" placeholder="Current Condition of Product" required>
+        </div>
+
+        <div class="form-group col-md-6" >
+            <label>Item Image:</label>
+            <input type="file" class="form-control" name="logo" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12" >
+            <label>Status:</label>
+            <input type="text" class="form-control" name="experience" placeholder="How Much Old Product" required>
+        </div>
+    </div>
+    </div>
+<center>
+    <input type="submit" value="Submit" class="btn btn-primary my-3" style="width:200px">
+</center>
+</form>
+
+{% include 'footer.html' %}
+
+{% if error == "no" %}
+<script>
+    alert("Job Added Successfully")
+    window.location = ('{% url 'job_list' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Somthing Wrong, Try Again...")
+</script>
+{% endif %}
+
+{% endblock %}
+
+
+{% include 'footer.html' %}

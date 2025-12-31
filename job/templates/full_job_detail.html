@@ -1,0 +1,73 @@
+{% include 'user_navigation.html' %}
+<style>
+    .abc{
+    border:2px solid blue;
+    padding: 30px;
+    border-radius:20px;
+    background:#999;
+    }
+    .box{margin-bottom:30px;}
+    .box2{
+    font:30px bold;
+    }
+</style>
+<marquee behavior="alternate" style="font-family: 'Monotype Corsiva'; font-size:25px; color:darkcyan; background-color:black; font-weight:bold; margin-top:1%">
+    Full Job Detail
+</marquee>
+<form class="container mt-5 abc" method="post" >
+    {% csrf_token %}
+    <div class="row box">
+        <div class="col col-3" style="background:cyan;border-radius:10px;">
+            <label ><b>Salary:</b></label>
+        </div>
+        <div class="col col-1"></div>
+        <div class="col col-8">
+            <label class="box2">{{data.salary}} per Month</label>
+        </div>
+    </div>
+
+    <div class="row box">
+        <div class="col col-3" style="background:cyan;border-radius:10px;">
+            <label ><b>Job Location:</b></label>
+        </div>
+        <div class="col col-1"></div>
+        <div class="col col-8">
+            <label class="box2">{{data.location}}</label>
+        </div>
+    </div>
+        <div class="row box">
+        <div class="col col-3" style="background:cyan;border-radius:10px;">
+            <label ><b>Skill Required:</b></label>
+        </div>
+        <div class="col col-1"></div>
+        <div class="col col-8">
+            <label class="box2">{{data.skills}}</label>
+        </div>
+    </div>
+    <div class="row box">
+        <div class="col col-3" style="background:cyan;border-radius:10px;">
+            <label ><b>Description:</b></label>
+        </div>
+        <div class="col col-1"></div>
+        <div class="col col-8">
+            <label class="box2">{{data.description}}</label>
+        </div>
+    </div>
+        <div class="row box">
+        <div class="col col-3" >
+            <h2 style="margin-top:20px;">Company Logo:</h2>
+        </div>
+        <div class="col col-1"></div>
+        <div class="col col-8">
+            <img src="{{data.image.url}}" height="100" width="300" style="border-radius:20px;">
+        </div>
+    </div>
+
+    <center>
+        <a href="{% url 'view_job_user' %}" class="btn btn-primary" style="margin-top:2%; color:darkcyan; background-color:black ; height:50px; font:30px bold;">Close</a>
+
+    </center>
+
+</form>
+
+{% include 'footer.html' %}
